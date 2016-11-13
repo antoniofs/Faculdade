@@ -1,0 +1,129 @@
+file *p;
+
+rb = ler
+wb = escrita
+a+b
+p = fopen("NomedoArquvio.txt", "Modo");
+
+if (p == null) 
+{
+   printf("Erro");
+  exit(1);
+}
+
+fclose(p);
+________________________________________________________
+para escrever um caracterer
+
+fputc(char c, file *fp);
+
+fputc(texto, f);
+---------------------------------------------------------
+fputc(' ', f) com espaço.
+
+________________________________________________________
+para ler um caracter
+
+fgetc(file *p);
+
+c = fgetc(f);
+printf("%c", c);
+fclose(p)
+______________________________________________________
+
+c = fgetc(f);
+while (C !EOF)
+{
+c = fgetc(f);
+}
+______________________________________________________
+ler string
+
+fgets(String, Tamanho, arquivo que estou lendo);
+
+char *result = fgets(str, 12, arq);
+
+if (result == NULL)
+{
+printf(erro);
+^}
+else
+printf(%s, str);
+
+_____________________________________________________
+escrever string
+
+int retorno = fputs(texto, f) = TEXTO = STRING - F(ARQUIO)
+
+if (retorno == EOF)
+{
+	printf(erro na gravacao)
+}
+
+_____________________________________________________
+Gravar dados formatados
+
+fprintf(arquivo, "%s, variaveis);
+
+
+lendo os dados
+
+fscanf(arquvio, "%d, variavel);
+
+______________________________________________________
+BINARIO feof = 0 (não estou no final do arquivo)
+
+ex: while(!feof(f)); 
+
+FILE END OF FILE
+______________________________________________________
+para escrever em byte
+
+fwirte(aonde esta o dados, tamanho em byte, int total de unidades, arquvio);
+
+int totalgravado, v = [1,2,,];
+
+total_gravado = fwrite(v, sizeof(int), 5, arq);
+if (total gravados != 5
+{
+printf(erro]
+}
+
+struct
+
+fwrite(&cad, sizeof(struct cadastro), 1, arq);
+
+__________________________________________________________
+para ler em binario
+
+fread(para aonde vai o dados, tamanho em byte, total de unidades, ponteiro do aquvio);
+
+duvida;
+
+totallido = fread(v, sizeof(int), 5, arq)
+fclose(arq);
+
+fread(&cad, sizeof(struct cadastri), 1, arq);
+
+printf(%s\n%s, cad.nome, cad.endereçop);
+
+__________________________________________________________
+
+fseek(arquvio, total de byte a ser pulados, origem)
+origem
+seek_set = inicio do arquivo
+seek_cur = atual do arquivo
+seek_end = final do arquivo
+
+valor negativo = pula pra trás
+valor positivo = pula para a frente
+
+exemplo
+
+fseek(f, 2*sizeof(struct cadasro), 1, f);
+___________________________________________________________
+volta para o começo
+
+rewind(f);
+
+____________________________________________________________

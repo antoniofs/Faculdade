@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1476233985 source:c:\users\anjun\desktop\faculdade - atividades - codeblocks\novo\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+

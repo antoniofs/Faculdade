@@ -1,0 +1,12 @@
+c:\users\anjun\onedrive\documents\visual studio 2015\Projects\simple\simple\bin\Debug\simple.exe.config
+c:\users\anjun\onedrive\documents\visual studio 2015\Projects\simple\simple\bin\Debug\simple.exe
+c:\users\anjun\onedrive\documents\visual studio 2015\Projects\simple\simple\bin\Debug\simple.pdb
+c:\users\anjun\onedrive\documents\visual studio 2015\Projects\simple\simple\obj\Debug\simple.csprojResolveAssemblyReference.cache
+c:\users\anjun\onedrive\documents\visual studio 2015\Projects\simple\simple\obj\Debug\simple.Form1.resources
+c:\users\anjun\onedrive\documents\visual studio 2015\Projects\simple\simple\obj\Debug\simple.Properties.Resources.resources
+c:\users\anjun\onedrive\documents\visual studio 2015\Projects\simple\simple\obj\Debug\simple.csproj.GenerateResource.Cache
+c:\users\anjun\onedrive\documents\visual studio 2015\Projects\simple\simple\obj\Debug\simple.exe
+c:\users\anjun\onedrive\documents\visual studio 2015\Projects\simple\simple\obj\Debug\simple.pdb
+C:\Users\anjun\Desktop\simple\bin\Debug\simple.exe.config
+C:\Users\anjun\Desktop\simple\obj\Debug\simple.exe
+C:\Users\anjun\Desktop\simple\obj\Debug\simple.pdb
