@@ -28,6 +28,7 @@ typedef struct
 
 } avaliacao;
 
+//FUNÇÕES
 void cadastrarAluno();
 void listaAluno();
 void insertionSort(aluno *a, int);
@@ -115,7 +116,7 @@ void cadastrarAluno()
         scanf(" %[^\n]", a.nome);
         printf("Estagio atual:\n <1> Iniciante\n <2> Intermediario\n"
                " <3> Avancado\n");
-        scanf(".:%d", &a.estagio);
+        scanf(" %d", &a.estagio);
 
         fwrite(&a, sizeof(aluno), 1, arq);
         fclose(arq);
@@ -159,7 +160,7 @@ void listaAluno()
     fread(a, sizeof(aluno), n, arq);
     fclose(arq);
 
-    //FUNÇÃO PARA
+    //FUNÇÃO PARA ORDENAÇÃO DE ESTÁGIO
     insertionSort(a, n);
 
     printf("\n\t Alunos Cadastrados\n\n");
@@ -203,7 +204,6 @@ void listaAluno()
             fprintf(stderr, "\nErro de abertura do arquivo");
             return;
         }
-
         //ESCREVENDO NO ARQUIVO TXT
         for(i = 0; i < n; i++)
         {
@@ -238,10 +238,9 @@ void listaAluno()
 //Função para ordenar os estagios
 void insertionSort(aluno *v, int n)
 {
-    int i, j, t = 0;
-    int vetor[4] = {0, 0, 0, 0};
+    int i, j, t, one = 0, two = 0, tres = 0;
     aluno aux;
-
+    int um[50] = {0}, dois[50] = {0}, trees[50] = {0};
     for(i = 1; i < n; i++)
     {
         aux = v[i];
@@ -253,16 +252,72 @@ void insertionSort(aluno *v, int n)
 
         v[j] = aux;
 
-    }/*
-    for(t = 0; t <= n; t++)
-    {
-        vetor[v[t].estagio]++;
     }
-  //  insertionSortName(v, vetor);
-*/
-}
 
-//Função guiada a deus, ops para ordernar nomes
+    for(t = 0; t < n; t++)
+    {
+
+     if (v[t].estagio == 1)
+     {
+         um[one] = v[t].cod_aluno;
+         one++;
+     }
+      else if(v[t].estagio == 2)
+      {
+          dois[two] = v[t].cod_aluno;
+          two++;
+      }
+      else if(v[t].estagio == 3)
+      {
+          trees[tres] = v[t].cod_aluno;
+          tres++;
+      }
+
+    }
+
+    for(i = 1; i < one; i++)
+    {
+        aux = v[i];
+        for(j = i; (j>0) && (strcasecmp(aux.nome, v[j-1].nome) < 0); j--)
+        {
+            v[j] = v[j - 1];
+
+        }
+
+        v[j] = aux;
+
+    }
+
+
+    for(i = one + 1; i < (two * 2); i++)
+    {
+        aux = v[i];
+        for(j = i; (v[i].estagio == 2) && (j>one ) && (strcasecmp(aux.nome, v[j-1].nome) < 0); j--)
+        {
+            v[j] = v[j - 1];
+
+        }
+
+        v[j] = aux;
+
+    }
+
+    for(i = (two * 2) + 1; i <= n ; i++)
+    {
+        aux = v[i];
+        for(j = i; (v[i].estagio == 3) && (j >= ( two * 2)) && (strcasecmp(aux.nome, v[j-1].nome) < 0); j--)
+        {
+            v[j] = v[j - 1];
+
+        }
+
+        v[j] = aux;
+
+    }
+
+}
+/*
+//Função guiada por deus, ops para ordernar nomes
 void insertionSortName(aluno *v, int vetor[])
 {
     int i, j, k = 1;
@@ -292,7 +347,7 @@ void insertionSortName(aluno *v, int vetor[])
 
 
 }
-/*
+*/
 void alterarAluno()
 {
     system("cls");
@@ -344,7 +399,7 @@ void alterarAluno()
                                     "<3> Avancado\n");
             scanf(" %d", &a[i].estagio);
 
-            fseek(arq, -sizeof(aluno), SEEK_CUR);
+            fseek(arq, 0, SEEK_SET);
             fwrite(a, sizeof(aluno), 1, arq);
             fclose(arq);
             teste = false;
@@ -363,7 +418,7 @@ void alterarAluno()
     }
     system("Pause");
 }
-
+/*
 void cadastrarAvalicoes()
 {
     register int t = 1;
