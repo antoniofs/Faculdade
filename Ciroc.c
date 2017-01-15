@@ -1,7 +1,7 @@
-/** @uthor: Antonio Fl·vio Silva Nascimento | N∞ Matricula 201626192 | Sistema de InformaÁ„o
- ** @Materia: IntroduÁ„o a ComputaÁ„o | Algoritmo
+/** @uthor: Antonio Fl√°vio Silva Nascimento | N¬∞ Matricula 201626192 | Sistema de Informa√ß√£o
+ ** @Materia: Introdu√ß√£o a Computa√ß√£o | Algoritmo
  ** @Date: 20/11/2016
- ** PROGRAMA PARA GERENCIAMENTO DE ALUNOS E CADASTRO DE AVALIA«’ES.
+ ** PROGRAMA PARA GERENCIAMENTO DE ALUNOS E CADASTRO DE AVALIA√á√ïES.
  **/
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,16 +9,16 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-#define NOMEARQUIVO "alunos.bin"
-#define TEXTO "alunos.txt"
-#define AVALIACOES "avaliacoes.bin"
+#define NOMEARQUIVO "alunos.bin" //Nome do arquivo alunos em binario
+#define TEXTO "alunos.txt" //Nome do arquivo de alunos TXT
+#define AVALIACOES "avaliacoes.bin" //Nome do arquivo Binario de Avaliacoes
 
 //Struct alunos
 typedef struct
 {
     int cod_aluno;
     char nome[41];
-    int estagio; //1: Iniciante - 2: Intermediario - 3: AvanÁado
+    int estagio; //1: Iniciante - 2: Intermediario - 3: Avan√ßado
 
 } aluno;
 //Struct data
@@ -38,7 +38,7 @@ typedef struct
 
 } avaliacao;
 
-//PROTOTIPO FUN«’ES
+//PROTOTIPO FUN√á√ïES
 void cadastrarAluno(); //Protipo Cadastrar Aluno
 void listaAluno(); //Protipo Listar Aluno
 void insertionSort(aluno *a, int);  //Prototipo para ordenar struct com nome e estagio
@@ -48,23 +48,23 @@ void cadastrarAvalicoes(); //Prototipo para cadastro de avaliacoes
 void menu();// rototipo para menu
 FILE * fileOpen(char nome[],char modo[]); //Prototipo para abertura e leitura de arquivos binarios e txt
 
-//N„o feitas
+//N√£o feitas
 int compara_datas(tdata, tdata);
 void listarAvaliacoes();
 
 //Metodo Principal
 void main ()
 {
-    menu(); //Chamei FunÁ„o Menu
+    menu(); //Chamei Fun√ß√£o Menu
 }
 
-//FunÁ„o para implementar o menu
+//Fun√ß√£o para implementar o menu
 void menu()
 {
-    system("color 40");
+    system("color 40"); //Alterar o fundo para vermelho/Preto
 
-    short int escolha;
-
+    short int escolha; //Variavel para escolha do usuario
+    //lA√áO DO MENU - SAI DO LACO QUANDO O VALOR FOR IGUAL A = 0
     do
     {
         printf("\nGERENCIAMENTOS DE ALUNOS\n\n"
@@ -72,8 +72,8 @@ void menu()
                "<2>: Lista Alunos\n"
                "<3>: Alterar um aluno\n"
                "<4>: Consultar um aluno\n"
-               "<5>: Cadastrar avaliaÁıes\n"
-               "<6>: Lista avaliaÁıes\n"
+               "<5>: Cadastrar avalia√ß√µes\n"
+               "<6>: Lista avalia√ß√µes\n"
                "<0>: Sair\n");
 
 
@@ -83,25 +83,25 @@ void menu()
         switch(escolha)
         {
         case 1:
-            cadastrarAluno();
+            cadastrarAluno();//cHAMANDO fUN√á√ÉO VOID
             break;
         case 2:
-            listaAluno();
+            listaAluno(); //cHAMANDO fUN√á√ÉO VOID
             break;
         case 3:
-            alterarAluno();
+            alterarAluno(); //cHAMANDO fUN√á√ÉO VOID
             break;
         case 4:
-            consultarAluno();
+            consultarAluno(); //cHAMANDO fUN√á√ÉO VOID
             break;
         case 5:
-            cadastrarAvalicoes();
+            cadastrarAvalicoes(); //cHAMANDO fUN√á√ÉO VOID
             break;
         case 6:
-            listarAvaliacoes();
+            listarAvaliacoes(); //cHAMANDO fUN√á√ÉO VOID
             break;
         default:
-            printf("Ops! OpÁ„o errada !\n");
+            printf("Ops! Op√ß√£o errada !\n"); // cASO E TESTE SE VALOR FOR MAIOR QUE 6 E MENOR QUE 0
             system("pause");
         }
 
@@ -109,7 +109,7 @@ void menu()
     while(escolha != 0);
 }
 
-//FunÁ„o para Cadastro de aluno, entrada: nome do aluno, estagio, SaÌda dados salvo em file binario.
+//Fun√ß√£o para Cadastro de aluno, entrada: nome do aluno, estagio, Sa√≠da dados salvo em file binario.
 void cadastrarAluno()
 {
     char c;
@@ -117,14 +117,14 @@ void cadastrarAluno()
     aluno a;
     system("cls");
 
-    //LA«O PARA CADASTRO DE NOVOS ALUNOS
+    //LA√áO PARA CADASTRO DE NOVOS ALUNOS sai do laco quando o usuario Digite N
     do
     {
 
         FILE *arq = fileOpen(NOMEARQUIVO,"ab");
 
         fseek(arq, 0, SEEK_END); //indo para o final do arquivo
-        a.cod_aluno = ftell(arq) / sizeof(aluno) + 1;
+        a.cod_aluno = ftell(arq) / sizeof(aluno) + 1; //Criando valor da matricula
 
         printf("\n\tNovo Aluno\n");
         printf("\nCodigo do aluno..: %d\n", a.cod_aluno);
@@ -136,11 +136,11 @@ void cadastrarAluno()
                "<2> Intermediario\n"
                "<3> Avancado\n");
         scanf(" %d", &a.estagio);
-
+        //Indo para o final do arquivo e printando com fwrite. fechando o arquivo logo apos
         fseek(arq, 0, SEEK_END);
         fwrite(&a, sizeof(aluno), 1, arq);
         fclose(arq);
-
+        //La√ßo para cadastrar outro aluno sai do la√ßo quando valor √© igual a S ou N
         do
         {
             printf("Gostaria de add outro aluno: SIM <S> OR NO<N>: ");
@@ -155,14 +155,14 @@ void cadastrarAluno()
     system("cls");
 
 }
-
+//Fun√ß√£o para Listar em ordem de estagio e de nomes alfabetica
 void listaAluno()
 {
     system("cls");
     int i, n;
     char opcao;
 
-    FILE *arq = fileOpen(NOMEARQUIVO,"rb");
+    FILE *arq = fileOpen(NOMEARQUIVO,"rb");//Chamando a fun√ß√£o
 
     //TAMANHO DO VETOR
     fseek(arq, 0, SEEK_END);
@@ -174,14 +174,14 @@ void listaAluno()
     fread(a, sizeof(aluno), n, arq);
     fclose(arq);
 
-    //FUN«√O PARA ORDENA«√O DE EST¡GIO E NOMES
+    //FUN√á√ÉO PARA ORDENA√á√ÉO DE EST√ÅGIO E NOMES
     insertionSort(a, n);
 
     printf("\n\n\tAlunos Cadastrados\n");
     printf("----------------------------------------------------------\n");
     printf("#Matricula| Nome do aluno               |  Estagio\n");
     printf("----------------------------------------------------------\n");
-    //Lista alunos
+    //Listar alunos
     for(i = 0; i < n; i++)
     {
         printf("%9d |", a[i].cod_aluno);
@@ -204,6 +204,7 @@ void listaAluno()
         }
     }
     printf("\n");
+    //La√ßo para printar no arquivo TXt
     do
     {
 
@@ -215,13 +216,13 @@ void listaAluno()
     while( !(opcao == 'S' || opcao == 'N') );
 
 
-
+    //ESCREVENDO NO ARQUIVO TXT
     if(opcao == 's' || opcao == 'S')
     {
 
         FILE *arq = fileOpen(TEXTO,"w");
 
-        //ESCREVENDO NO ARQUIVO TXT
+
         fprintf(arq, "\n\n\tAlunos Cadastrados\n");
         fprintf(arq, "----------------------------------------------------------\n");
         fprintf(arq, "#Matricula| Nome do aluno               |  Estagio\n");
@@ -252,6 +253,7 @@ void listaAluno()
             }
 
         }
+        //mENSAGEM PARA TER CERTEZA QUE FOI SALVO
         printf("\nArquivo Salvo com sucesso!\n");
         system("Pause");
     }
@@ -263,20 +265,22 @@ void listaAluno()
 
 }
 
-//FunÁ„o para ordenar os estagios e nomes
+//Fun√ß√£o para ordenar os estagios e nomes
 void insertionSort(aluno *v, int n)
 {
     int i, j;
     aluno aux;
 
+    //oRDENA√á√ÉO DE NOMES INDEPEDENTE DE CAIXA ALTA OU CAIXA BAIXA;
     for(i = 1; i < n; i++)
     {
         aux = v[i];
-        for(j = i; (j > 0) && (strncasecmp(aux.nome, v[j - 1].nome, 1) < 0); j--)
+        for(j = i; (j > 0) && (strncasecmp(aux.nome, v[j - 1].nome, 1) < 0); j--) //Comparando com STRNCaseCMP, para comparar a primeira letra indepedente do CAPS LOXK
             v[j] = v[j-1];
         v[j] = aux;
     }
 
+    //ORDENA√á√ÉO DE ESTAGIO
     for(i = 1; i < n; i++)
     {
         aux = v[i];
@@ -285,7 +289,7 @@ void insertionSort(aluno *v, int n)
         v[j] = aux;
     }
 }
-//FunÁ„o para alterar aluno no binario
+//Fun√ß√£o para alterar aluno no binario
 void alterarAluno()
 {
     system("cls");
@@ -302,9 +306,10 @@ void alterarAluno()
 
     printf("Informe a Matricula do aluno: ");
     scanf("%d", &op);
-
+    //INDO PARA A MATRICULA DIGITADO PELO USUARIO
     fseek(arq, (op - 1) * sizeof(aluno), SEEK_SET);
     fread(&a, sizeof(aluno), 1, arq);
+    //caso de teste Caso n√£o exita alunos
     if (a.cod_aluno != op && op > n)
     {
         fprintf(stderr, "\nErro: nao ha' nenhuma aluno com esse numero\n");
@@ -325,19 +330,19 @@ void alterarAluno()
         printf("Estagio: <3> Avancado\n");
         break;
     }
-
+    //Atializando Informa√ß√µes
     printf("\t\n\nAtualizacao de Informacao\n\n");
     printf("Novo nome:");
     scanf(" %[^\n]", a.nome);
     printf("Estagio novo:\n <1> Iniciante\n <2> Intermediario\n"
            "<3> Avancado\n");
     scanf(" %d", &a.estagio);
-
+    //Escrendo no Arquivo binario na posi√ß√£o exata
     fseek(arq, -sizeof(aluno), SEEK_CUR);
     fwrite(&a, sizeof(aluno), 1, arq);
     fclose(arq);
 }
-//
+//Fun√ß√£o para consultar um aluno
 void consultarAluno()
 {
     system("cls");
@@ -350,7 +355,7 @@ void consultarAluno()
     FILE *file = fileOpen(AVALIACOES,"rb");
 
     aluno a;
-
+    //Tamanho do vetor
     fseek(file, 0, SEEK_END);
     n = ftell(file) / sizeof(avaliacao);
     rewind(file);
@@ -397,20 +402,21 @@ void consultarAluno()
     }
     else
     {
-        printf("N„o exite esse aluno cadastrado");
+        printf("N√£o exite esse aluno cadastrado");
+        return;
     }
 
     fclose(file);
     fclose(arq);
 }
-
+//Cadastrar Aval√ß√µes Funcao void
 void cadastrarAvalicoes()
 {
     register int t = 1;
     system("cls");
     int n, i, op;
     bool teste;
-
+    //Abrindo os arquivos com funcao FILEOpen
     FILE *file = fileOpen(AVALIACOES,"ab");
 
     FILE *arq = fileOpen(NOMEARQUIVO,"rb");
@@ -443,7 +449,7 @@ void cadastrarAvalicoes()
         printf("Favor digite a data atual: (EX. 12/12/2012): ");
         scanf("%d/%d/%d", &b.data.dia, &b.data.mes, &b.data.ano);
 
-        printf("Nota da sua avaliaÁ„o: (EX. 10.0): ");
+        printf("Nota da sua avalia√ß√£o: (EX. 10.0): ");
         scanf("%f", &b.nota);
 
         b.cod_aluno = a.cod_aluno;
@@ -455,16 +461,18 @@ void cadastrarAvalicoes()
     }
     else
     {
-        printf("N„o existe esse aluno cadastrado");
+        printf("N√£o existe esse aluno cadastrado");
     }
 }
-//FunÁ„o para abrir o arquivo: tem como entrada nome do arquivo e MODO
+//Fun√ß√£o para abrir o arquivo: tem como entrada nome do arquivo e MODO
 FILE* fileOpen(char nome[],char modo[])
 {
     FILE *fp;
     if((fp = fopen(nome,modo)) == NULL)
     {
-        printf("Erro no arquivo <%s>",nome);
+        system("color 30");
+        printf("\n\tErro no arquivo <%s>\n\n",nome);
+        system("pause");
         exit(1);
     }
     return fp;
@@ -472,19 +480,38 @@ FILE* fileOpen(char nome[],char modo[])
 //Listar Alunos
 void listarAvaliacoes()
 {
-    tdata b, c;
+    system("cls");
+    tdata b, c; //B = DATA DO INICIO - C = DATA FINAL
+    avaliacao d; //Avalia√ß√£o d = DATA
 
     FILE *file = fileOpen(AVALIACOES,"rb");
 
     FILE *arq = fileOpen(NOMEARQUIVO,"rb");
 
-
-
     printf("Favor informe a data inicial: no formato <12/12/2016>: ");
-    scanf("%2d/%2d/%2d", b.dia, b.mes, b.ano);
+    scanf(" %2d/%2d/%2d", &b.dia, &b.mes, &b.ano);
 
     printf("Favor informe a data final: no formato <12/12/2016>: ");
-    scanf("%2d/%2d/%2", c.dia, c.mes, c.ano);
+    scanf(" %2d/%2d/%2", &c.dia, &c.mes, &c.ano);
+
+
+    if (compara_datas(b, c) <= 0)
+    {
+
+        while (fread(&d, sizeof(avaliacao), 1, file) > 0)
+        {
+            if(compara_datas(d.data, b) >= 0 && compara_datas(c, d.data) <= 0)
+            {
+                printf("%d", d.cod_aluno);
+            }
+
+        }
+
+        }
+    else
+        printf("Erro na data digitada: Data final maior que data inicial");
+
+
 
 
 }

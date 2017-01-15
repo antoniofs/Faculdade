@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1479265792 source:c:\users\anjun\desktop\faculdade - atividades - codeblocks\debugartrabalhociro\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	<ctype.h>
+

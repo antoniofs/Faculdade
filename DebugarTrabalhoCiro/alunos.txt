@@ -1,0 +1,8 @@
+
+Nome: Pedrinho
+Matricula: 2
+Estagio: <1> Iniciante
+
+Nome: Carlos
+Matricula: 1
+Estagio: <2> Intermediario
